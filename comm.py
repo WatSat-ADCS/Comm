@@ -96,10 +96,8 @@ class ADCSArduino():
         self.open_arduino_port() 
         self._prep_request('get')
         sleep(1)
-        # I changed this without checking
-        return self.gen_dict(self.arduino.readline())
-        print(data) 
-        self.close_arduino_post()
+        data = self.gen_dict(self.arduino.readline())
+        self.close_arduino_port()
         return data
 
     @open_close_port
