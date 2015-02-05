@@ -50,8 +50,8 @@ class ADCSArduino():
         data = self.get_sensor_data()
         self.call_control(data)
         sleep(1) 
-        # TODO: get val to change-will probably be put in control alg
-        self.post_change(4)
+        current_list = [1,2,3,4]
+        self.post_change(current_list)
         
     def _prep_request(self, typ):
         # tells the arduino when we want to send/recieve data so
@@ -68,7 +68,6 @@ class ADCSArduino():
         else:
             raise RequestError('invalid request type')
 
-    # TODO: process serial string (see next line)
     def gen_dict(self, ard):
         data = {}
         sens = ard.split('}')    # gets all elements
