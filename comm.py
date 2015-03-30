@@ -29,17 +29,13 @@ class ADCSArduino():
 
     def open_arduino_port(self):
         # opens the serial port if it is not already open
-        if self.arduino.isOpen():
-            return
-        else:
+        if not self.arduino.isOpen():
             self.arduino.open()
 
     def close_arduino_port(self):
         # closes the serial port if it not already closed
         if self.arduino.isOpen():
             self.arduino.close()
-        else:
-            return
 
     def activate(self):
         # starts up the adcs arduino for buisness
@@ -70,8 +66,9 @@ class ADCSArduino():
 
     def gen_dict(self, ard):
         data = {}
-        sens = ard.split('}')    # gets all elements
-        sens.pop()                  # removes \n
+        # gets all elements and removes \n
+        sens = ard.split('}')
+        sens.pop()
             
         # required regexs
         preg = re.compile('photodiodes:[-0-9][^;]*')
